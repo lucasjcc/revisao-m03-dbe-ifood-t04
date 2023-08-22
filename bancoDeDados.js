@@ -17,6 +17,12 @@ const bancoDeDados = {
             "nome": "Berk Cox",
             "email": "pede.malesuada@outlook.org",
             "senha": "WOE51EBN0VK"
+        },
+        {
+            "id": 4,
+            "nome": "Caldeira",
+            "email": "caldeira@gmail.com",
+            "senha": "WOE51EBN0VKLKKNJHHHGGG"
         }
     ],
     gastos: [
@@ -93,4 +99,4 @@ const bancoDeDados = {
     ]
 }
 
-module.exports = bancoDeDados
+module.exports = { bancoDeDados }

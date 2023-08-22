@@ -1,0 +1,18 @@
+{
+  "name": "revisao-m03-ifood-t04",
+  "version": "1.0.0",
+  "description": "## Descrição da proposta Contruir uma RESTful API que simule funcionalidades de aplicativo de gestão financeira de gastos:",
+  "main": "bancoDeDados.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

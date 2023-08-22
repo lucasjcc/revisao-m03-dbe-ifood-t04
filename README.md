@@ -3,14 +3,14 @@
 ## Descrição da proposta
 Contruir uma RESTful API que simule funcionalidades de aplicativo de gestão financeira de gastos:
 
-- Cadastrar usuário;
-- Fazer login do usuário;
-- O usuário deve ser capaz de editar sua conta
-- O usuário deve ser capaz de exibir seus os gasto;
-- O usuário deve ser capaz de detalhar um gasto;
-- O usuário deve ser capaz de editar um gasto;
-- O usuário deve ser capaz de excluir um gasto.
-- O usuário deve ser capaz de filtrar pelos gastos feitos em um período
+- [] Cadastrar usuário;
+- [] Fazer login do usuário;
+- [] O usuário deve ser capaz de exibir seus os gasto;
+- [] O usuário deve ser capaz de detalhar um gasto;
+- [] O usuário deve ser capaz de editar sua conta;
+- [] O usuário deve ser capaz de editar um gasto;
+- [] O usuário deve ser capaz de excluir um gasto;
+- [] O usuário deve ser capaz de filtrar pelos gastos feitos em um período.
   
 ## Banco de dados
 
