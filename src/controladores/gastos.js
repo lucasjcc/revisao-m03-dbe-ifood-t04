@@ -1,5 +1,5 @@
-const { encontrarUsuarioPeloId } = require("../banco/usuarios")
-const { encontrarGastosPeloId } = require("../banco/gastos")
+const { encontrarUsuarioPeloId } = require("../repositorios/usuarios")
+const { encontrarGastosPeloId } = require("../repositorios/gastos")
 
 const listarGastos = (req, res) => {
     const { id } = req.params
