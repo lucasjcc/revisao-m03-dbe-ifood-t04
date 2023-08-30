@@ -1,7 +1,15 @@
-const { bancoDeDados } = require("../../bancoDeDados")
+const conexaoBanco = require("../config/bancoDeDados")
 
-const encontrarGastosPeloId = (idPessoa) => {
-    return bancoDeDados.gastos.filter(gasto => gasto.id_usuario === Number(idPessoa))
+const encontrarGastosPeloId = (idUsuario) => {
+    const gastosEncontrados = conexaoBanco.query(`
+        SELECT
+            *
+        FROM 
+            gastos
+        WHERE
+            id_usuario = $1;
+    `, [idUsuario])
+    return gastosEncontrados
 }
 
 module.exports = {

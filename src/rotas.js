@@ -1,13 +1,17 @@
 const express = require('express')
 const { listarGastos, listarGasto } = require('./controladores/gastos')
-const { atualizarUsuario, cadastrarUsuario } = require('./controladores/usuarios')
+const { atualizarUsuario, cadastrarUsuario, logarUsuario } = require('./controladores/usuarios')
+const conferirLogado = require('./intermediarios/conferirLogado')
 
 const rotas = express()
 
 rotas.post('/usuarios', cadastrarUsuario)
-rotas.get('/usuarios/:id/gastos', listarGastos)
-rotas.get('/usuarios/:idPessoa/gastos/:idGasto', listarGasto)
+rotas.post('/login', logarUsuario)
 
-rotas.put('/usuarios/:id', atualizarUsuario)
+rotas.use(conferirLogado)
+
+rotas.get('/gastos', listarGastos)
+rotas.get('/gastos/:id', listarGasto)
+rotas.put('/usuarios', atualizarUsuario)
 
 module.exports = rotas

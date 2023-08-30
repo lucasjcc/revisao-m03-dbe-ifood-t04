@@ -1,5 +1,8 @@
+const jwt = require("jsonwebtoken")
 const repositorioUsuario = require("../repositorios/usuarios")
+const compararSenhas = require("../utils/compararSenhas")
 const criptograrSenha = require("../utils/criptografarSenha")
+const { senhaToken } = require('../../dadosSensiveis')
 
 const cadastrarUsuario = async (req, res) => {
     const { nome, email, senha } = req.body
@@ -18,24 +21,42 @@ const cadastrarUsuario = async (req, res) => {
     }
 }
 
-const atualizarUsuario = (req, res) => {
-    const { id } = req.params
+const atualizarUsuario = async (req, res) => {
     const { nome, email, senha } = req.body
-    if (isNaN(Number(id))) {
-        return res.status(400).json({ mensagem: "O id deve ser numérico" })
-    }
     if (!nome || !email || !senha) {
         return res.status(400).json({ mensagem: "Todos os campos são obrigatórios" })
     }
-    const usuarioEncontrado = repositorioUsuario.encontrarUsuarioPeloId(id)
-    if (!usuarioEncontrado) {
-        return res.status(404).json({ mensagem: "Pessoa não encontrada" })
+    try {
+        return res.status(501).send("Funcionalidade ainda não disponível")
+    } catch (error) {
+        return res.status(500).json({ mensagem: "Erro interno no servidor" })
     }
+}
 
-    return res.json(usuarioEncontrado)
+const logarUsuario = async (req, res) => {
+    const { email, senha } = req.body
+    if (!email || !senha) {
+        return res.status(400).json({ mensagem: "Todos os campos são obrigatórios" })
+    }
+    try {
+        const { rows: usuariosEncontrados, rowCount } = await repositorioUsuario.encontrarUsuarioPeloEmail(email)
+        if (rowCount === 0) {
+            return res.status(404).json({ mensagem: "E-mail ou senha inválidos" })
+        }
+        const usuarioEncontrado = usuariosEncontrados[0]
+        const senhaConfere = await compararSenhas(senha, usuarioEncontrado.senha)
+        if (!senhaConfere) {
+            return res.status(401).json({ mensagem: "E-mail ou senha inválidos" })
+        }
+        const token = jwt.sign({ id: usuarioEncontrado.id }, senhaToken, { expiresIn: "15m" })
+        return res.status(200).json({ token })
+    } catch (error) {
+        return res.status(500).json({ mensagem: "Erro interno no servidor" })
+    }
 }
 
 module.exports = {
     atualizarUsuario,
-    cadastrarUsuario
+    cadastrarUsuario,
+    logarUsuario
 }

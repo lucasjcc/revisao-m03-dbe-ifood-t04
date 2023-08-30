@@ -25,8 +25,8 @@ Essa tabela deve ter os seguintes campos:
 Essa tabela deve ter os seguintes campos:
 - id (identificador único);
 - id_usuario (chave estrangeira);
-- valor (maior que zero e obrigatório);
-- data (data do gasto);
+- valor (maior que zero e obrigatório. O valor será passado em centavos);
+- data (data do gasto. Valor padrão o da criação);
 - descricao (optativo).
 
 ## Rotas
