@@ -39,3 +39,10 @@ INSERT INTO
 	gastos (id_usuario, valor)
 VALUES
 	(18, 1100);
+
+SELECT 
+	*
+FROM 
+	gastos
+WHERE 
+	id_usuario = 18
